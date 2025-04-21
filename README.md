@@ -8,6 +8,7 @@ Upload your `.fit` files and get insights on your speed, cadence, power, and hea
 ## ⚙️ Features
 
 - 📊 Visualize Speed, Cadence, Power & Heart Rate
+- 🤔 Creates activity name
 - 🕒 Interactive time-based plots
 - 📁 Upload `.fit` files directly
 - 🔄 Clean layout with multiple Y-axes
