@@ -5,12 +5,6 @@ Upload your `.fit` files and get insights on your speed, cadence, power, and hea
 
 ---
 
-## 📸 Preview
-
-![Dashboard Preview](path/to/screenshot.png)
-
----
-
 ## ⚙️ Features
 
 - 📊 Visualize Speed, Cadence, Power & Heart Rate
@@ -36,4 +30,4 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 
 # 4. Run the app
-streamlit run app.py
+python -m streamlit run app.py

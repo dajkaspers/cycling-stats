@@ -1,15 +1,20 @@
 import streamlit as st
 import pandas as pd
-from fit_helpers import parse_fitfile, plot_combined_metrics
+from fit_helpers import parse_fitfile, plot_combined_metrics, generate_activity_name
 from stats_helpers import display_stats
 
 st.set_page_config(page_title="FIT File Reader", layout="wide")
 st.title("🚴 FIT File Reader with Graphs")
 
+
 uploaded_file = st.file_uploader("Upload your .fit file", type=["fit"])
 
 if uploaded_file is not None:
     df = parse_fitfile(uploaded_file)
+    
+    # Create the activity name
+    activity_name = generate_activity_name(df)
+    st.title(activity_name)
 
     # 🧼 Clean + Prep
     if 'speed_kmh' in df.columns:

@@ -4,6 +4,8 @@ import plotly.express as px
 from io import BytesIO
 import streamlit as st
 import plotly.graph_objects as go
+import random
+from datetime import datetime
 
 @st.cache_data
 def parse_fitfile(uploaded_file):
@@ -144,3 +146,43 @@ def calculate_normalized_power(df):
     # 4th root to get NP
     np_power = mean_power_4th ** 0.25
     return round(np_power, 2)
+
+def generate_activity_name(df):
+    time_of_day = get_time_of_day()
+
+    # Extract some ride-level stats from df
+    distance_km = df['distance_km'].sum() if 'distance_km' in df.columns else None
+    elevation_gain_m = df['elevation_gain_m'].sum() if 'elevation_gain_m' in df.columns else None
+    avg_speed_kmh = df['speed_kmh'].mean() if 'speed_kmh' in df.columns else None
+
+    moods = [
+        "Leg Burner 🔥", "Casual Cruise 🧘‍♂️", "Power Hour ⚡️", "Wind Warrior 🌬️",
+        "Climb Crusher 🧗", "Coffee Ride ☕", "Chasing KOMs 🏁", "Just Keep Pedaling 🚴",
+        "No Pain No Gain 💪", "Spin & Grin 😁", "Zone 2 Zen 🧘", "Beast Mode Engaged 🦁"
+    ]
+
+    templates = [
+        f"{time_of_day} {random.choice(moods)}",
+        f"{random.choice(['Epic', 'Chill', 'Solid', 'Quick'])} {time_of_day} Ride 🚴",
+        f"{random.choice(['Into the Wind', 'Over the Hills', 'Through the City'])} We Go 🌍",
+        f"{random.choice(['Sweat', 'Suffer', 'Spin'])} Session - {time_of_day} Edition",
+        f"{random.choice(['Rolling', 'Rippin’', 'Grinding'])} {random.choice(['with Friends', 'Solo'])} 🎧"
+    ]
+
+    if distance_km and distance_km > 80:
+        templates.append("Century Vibes 🎯")
+    if elevation_gain_m and elevation_gain_m > 1000:
+        templates.append("King of the Mountain Day 👑")
+    if avg_speed_kmh and avg_speed_kmh > 32:
+        templates.append("Speed Demon Mode 🚀")
+
+    return random.choice(templates)
+
+def get_time_of_day():
+    hour = datetime.now().hour
+    if hour < 12:
+        return "Morning"
+    elif hour < 17:
+        return "Afternoon"
+    else:
+        return "Evening"
