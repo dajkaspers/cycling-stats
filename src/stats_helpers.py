@@ -8,8 +8,19 @@ def display_stats(df):
     col1, col2, col3 = st.columns(3)
 
     with col1:
-        duration = df['timestamp'].max()
-        st.metric("Duration", str(duration).split(".")[0])
+        # Calculate the duration by subtracting the first timestamp from the last timestamp
+        duration = df['timestamp'].max() - df['timestamp'].min()
+
+        # Convert duration to a readable format (e.g., hours:minutes:seconds)
+        duration_in_seconds = duration.total_seconds()  # Convert to seconds
+
+        # Display the duration in a user-friendly format
+        hours = int(duration_in_seconds // 3600)  # Get the number of full hours
+        minutes = int((duration_in_seconds % 3600) // 60)  # Get the remaining minutes
+        seconds = int(duration_in_seconds % 60)  # Get the remaining seconds
+
+        # Show the duration as a metric in the format hours:minutes:seconds
+        st.metric("Duration", f"{hours:02}:{minutes:02}:{seconds:02}")
         st.metric("Avg Speed", f"{df['speed_kmh'].mean():.1f} km/h")
         st.metric("Max Speed", f"{df['speed_kmh'].max():.1f} km/h")
 
