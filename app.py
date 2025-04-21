@@ -11,7 +11,15 @@ uploaded_file = st.file_uploader("Upload your .fit file", type=["fit"])
 
 if uploaded_file is not None:
     df = parse_fitfile(uploaded_file)
-    
+
+    # Check on required columns
+    required_columns = ['speed_kmh', 'cadence', 'power', 'heart_rate']
+
+    for col in required_columns:
+        if col not in df.columns:
+            st.error(f"❌ Missing data. This looks like incomplete training data — please check your file and try again.")
+            st.stop()
+
     # Create the activity name
     activity_name = generate_activity_name(df)
     st.title(activity_name)
