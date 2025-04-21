@@ -31,4 +31,4 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 
 # 4. Run the app
-python -m streamlit run app.py
+python -m streamlit run Home.py

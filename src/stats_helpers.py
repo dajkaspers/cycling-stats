@@ -1,6 +1,6 @@
 import streamlit as st
 import numpy as np
-from fit_helpers import calculate_normalized_power
+from src.fit_helpers import calculate_normalized_power
 
 def display_stats(df):
     st.subheader("📋 Ride Summary")
