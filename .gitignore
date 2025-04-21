@@ -1,0 +1,36 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# macOS junk
+.DS_Store
+
+# Streamlit cache
+.streamlit/
+
+# VSCode settings
+.vscode/
+
+# Data files
+*.fit
+*.csv
+*.json
+
+# Logs
+*.log
+
+# Python egg stuff
+*.egg-info/
+dist/
+build/
+
+# Environment variables
+.env
